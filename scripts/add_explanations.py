@@ -57,21 +57,6 @@ EXPLANATIONS = {
     ),
 }
 
-STYLE = f"""<style>
-.{MARKER} {{
-  background: #f3f4f6;
-  color: #374151;
-  border-left: 3px solid #9ca3af;
-  padding: 0.5em 0.8em;
-  font-size: 0.9em;
-  line-height: 1.45;
-  margin: 0.4em 0 1em;
-}}
-.{MARKER} code {{ font-size: 0.95em; }}
-</style>
-"""
-
-
 def annotate(html: str) -> str:
     if MARKER in html:
         return html
@@ -82,7 +67,7 @@ def annotate(html: str) -> str:
             html,
             count=1,
         )
-    return html.replace("</head>", STYLE + "</head>", 1)
+    return html
 
 
 def main() -> None:
