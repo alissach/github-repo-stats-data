@@ -1,0 +1,32 @@
+# Collects daily GitHub traffic stats (views, clones, referrers) for each repo
+# below, past GitHub's 14-day retention window, and builds an HTML/PDF report
+# per repo on the `github-repo-stats` branch of this repo.
+# See https://github.com/jgehrcke/github-repo-stats
+name: fetch-repository-stats
+concurrency: fetch-repository-stats
+
+on:
+  schedule:
+    # Once a day at 23:00 UTC
+    - cron: "0 23 * * *"
+  workflow_dispatch:
+
+jobs:
+  run-ghrs-with-matrix:
+    name: repostats
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        statsRepo:
+          - alissach/job-scraper-to-airtable
+          - alissach/chrome-url-redirect
+          - alissach/browser-disable-ctrl-scroll-zoom
+      fail-fast: false
+      # One at a time so concurrent runs don't race pushing to the data branch
+      max-parallel: 1
+    steps:
+      - name: run-ghrs
+        uses: jgehrcke/github-repo-stats@RELEASE
+        with:
+          repository: ${{ matrix.statsRepo }}
+          ghtoken: ${{ secrets.ghrs_github_api_token }}
