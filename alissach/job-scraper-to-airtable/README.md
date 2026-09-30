@@ -6,3 +6,5 @@
 
 **Latest report PDF**: [report.pdf](https://github.com/alissach/github-repo-stats-data/raw/github-repo-stats/alissach/job-scraper-to-airtable/latest-report/report.pdf)
 
+
+**Latest report HTML via GitHub pages**: [report.html](https://alissach.github.io/github-repo-stats-data/alissach/job-scraper-to-airtable/latest-report/report.html)
