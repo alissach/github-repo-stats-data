@@ -17,7 +17,7 @@ MARKER = "ghrs-explainer"
 EXPLANATIONS = {
     "views": (
         "How often people opened this repo's pages on GitHub: the main page, "
-        "README, individual files, issues, and so on. Each bar is one day."
+        "README, individual files, issues, and so on. Each dot on the charts is one day."
     ),
     "unique-visitors": (
         "Different people who viewed the repo that day. Someone who visits "
