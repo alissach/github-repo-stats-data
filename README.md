@@ -7,4 +7,5 @@ Long-term GitHub traffic stats (views, clones, referrers, stars) for my Chrome e
   - [job-scraper-to-airtable](https://alissach.github.io/github-repo-stats-data/alissach/job-scraper-to-airtable/latest-report/report.html)
   - [chrome-url-redirect](https://alissach.github.io/github-repo-stats-data/alissach/chrome-url-redirect/latest-report/report.html)
   - [browser-disable-ctrl-scroll-zoom](https://alissach.github.io/github-repo-stats-data/alissach/browser-disable-ctrl-scroll-zoom/latest-report/report.html)
+- **Chart explanations:** [`scripts/add_explanations.py`](scripts/add_explanations.py) adds a short explanation under each chart heading in the HTML reports after every run (the PDFs are left as the action generates them). Edit the `EXPLANATIONS` text there to change them.
 - **Token:** repo secret `GHRS_GITHUB_API_TOKEN`, a fine-grained PAT with Administration (read) + Contents (read/write) on this repo and every tracked repo.

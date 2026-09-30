@@ -32,3 +32,34 @@ jobs:
           ghtoken: ${{ secrets.ghrs_github_api_token }}
           # Makes the per-repo README on the data branch link to the Pages-hosted report
           ghpagesprefix: https://alissach.github.io/github-repo-stats-data
+
+  # The action rebuilds report.html from scratch each run, so re-add the
+  # plain-language chart explanations after all repos are done
+  add-explanations:
+    needs: run-ghrs-with-matrix
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: main
+      - uses: actions/checkout@v4
+        with:
+          ref: github-repo-stats
+          path: data
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: annotate reports
+        run: python main/scripts/add_explanations.py data
+      - name: commit and push
+        working-directory: data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && exit 0
+          git commit -m "Add chart explanations to reports"
+          git push
